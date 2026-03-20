@@ -37,8 +37,8 @@ export default function Index() {
           <span
             className="font-mono-custom text-xs px-2 py-1 rounded"
             style={{
-              background: 'rgba(52,211,153,0.12)',
-              border: '1px solid rgba(52,211,153,0.25)',
+              background: 'rgba(102,179,255,0.12)',
+              border: '1px solid rgba(102,179,255,0.25)',
               color: 'var(--neon)',
             }}
           >
