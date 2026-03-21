@@ -104,45 +104,47 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Right: photo placeholder (red square) + roles */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {/* Right: photo + roles in single card */}
+          <div style={{ background: 'var(--surface-2)', border: '1px solid var(--surface-3)', borderRadius: 14, overflow: 'hidden' }}>
 
             {/* Photo placeholder */}
-            <div style={{ width: '100%', aspectRatio: '3 / 4', background: 'var(--surface-2)', border: '1px solid var(--surface-3)', borderRadius: 12, maxWidth: 300, margin: '0 auto 0.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-              <div style={{ width: 56, height: 56, borderRadius: '50%', border: '1.5px dashed var(--surface-3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Icon name="User" size={24} fallback="User" style={{ color: 'var(--text-secondary)', opacity: 0.4 }} />
+            <div style={{ width: '100%', aspectRatio: '16 / 7', background: 'var(--surface)', borderBottom: '1px solid var(--surface-3)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              <div style={{ width: 48, height: 48, borderRadius: '50%', border: '1.5px dashed rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name="User" size={20} fallback="User" style={{ color: 'var(--text-secondary)', opacity: 0.3 }} />
               </div>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', color: 'var(--text-secondary)', opacity: 0.4, letterSpacing: '0.1em' }}>ФОТО</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.3, letterSpacing: '0.12em' }}>ФОТО</span>
             </div>
 
-            {/* Role cards */}
-            {person.roles.map((role) => (
-              <div
-                key={role.title}
-                style={{
-                  background: 'var(--surface-2)',
-                  border: '1px solid var(--surface-3)',
-                  borderRadius: 10,
-                  padding: '1rem 1.2rem',
-                  display: 'flex',
-                  gap: '1rem',
-                  alignItems: 'flex-start',
-                }}
-              >
-                <div style={{ width: 36, height: 36, minWidth: 36, background: 'rgba(102,179,255,0.10)', border: '1px solid rgba(102,179,255,0.2)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Icon name={role.icon} size={16} fallback="Code2" style={{ color: 'var(--neon)' }} />
-                </div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: '0.3rem' }}>{role.title}</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginBottom: '0.5rem' }}>
-                    {role.tags.map((t) => (
-                      <span key={t} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', color: 'var(--neon)', background: 'var(--neon-dim)', border: '1px solid rgba(102,179,255,0.2)', padding: '0.1rem 0.45rem', borderRadius: 4 }}>{t}</span>
-                    ))}
+            {/* Role rows */}
+            <div>
+              {person.roles.map((role, i) => (
+                <div
+                  key={role.title}
+                  style={{
+                    padding: '0.85rem 1.2rem',
+                    display: 'flex',
+                    gap: '0.85rem',
+                    alignItems: 'center',
+                    borderTop: i > 0 ? '1px solid var(--surface-3)' : undefined,
+                  }}
+                >
+                  <div style={{ width: 32, height: 32, minWidth: 32, background: 'rgba(102,179,255,0.08)', border: '1px solid rgba(102,179,255,0.15)', borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Icon name={role.icon} size={14} fallback="Code2" style={{ color: 'var(--neon)' }} />
                   </div>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{role.desc}</p>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.2rem' }}>
+                      <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>{role.title}</span>
+                      <div style={{ display: 'flex', gap: '0.25rem', flexWrap: 'wrap' }}>
+                        {role.tags.map((t) => (
+                          <span key={t} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--neon)', background: 'var(--neon-dim)', border: '1px solid rgba(102,179,255,0.15)', padding: '0.05rem 0.4rem', borderRadius: 3 }}>{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.4, margin: 0 }}>{role.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
