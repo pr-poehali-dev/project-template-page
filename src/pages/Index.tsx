@@ -107,8 +107,13 @@ export default function Index() {
           {/* Right: photo placeholder (red square) + roles */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
-            {/* Photo — красный квадрат */}
-            <div style={{ width: '100%', aspectRatio: '1 / 1', background: '#cc0000', borderRadius: 12, border: '1px solid var(--surface-3)', maxWidth: 340, margin: '0 auto 0.5rem' }} />
+            {/* Photo placeholder */}
+            <div style={{ width: '100%', aspectRatio: '3 / 4', background: 'var(--surface-2)', border: '1px solid var(--surface-3)', borderRadius: 12, maxWidth: 300, margin: '0 auto 0.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+              <div style={{ width: 56, height: 56, borderRadius: '50%', border: '1.5px dashed var(--surface-3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name="User" size={24} fallback="User" style={{ color: 'var(--text-secondary)', opacity: 0.4 }} />
+              </div>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', color: 'var(--text-secondary)', opacity: 0.4, letterSpacing: '0.1em' }}>ФОТО</span>
+            </div>
 
             {/* Role cards */}
             {person.roles.map((role) => (
