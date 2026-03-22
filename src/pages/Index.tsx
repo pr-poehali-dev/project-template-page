@@ -84,50 +84,57 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Photo 9:16 + info column */}
-        <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 mb-12">
-          {/* Photo placeholder 9:16 */}
-          <div>
-            <p className="section-label mb-3">// скриншоты</p>
-            <div
-              style={{
-                width: '100%',
-                aspectRatio: '9 / 16',
-                background: '#cc0000',
-                borderRadius: 10,
-                border: '1px solid var(--surface-3)',
-              }}
-            />
+        {/* Screenshot browser mockup */}
+        <div className="mb-12">
+          <p className="section-label mb-3">// скриншоты</p>
+          <div style={{ background: 'var(--surface-2)', border: '1px solid var(--surface-3)', borderRadius: 12, overflow: 'hidden' }}>
+            {/* Browser chrome */}
+            <div style={{ background: 'var(--surface)', borderBottom: '1px solid var(--surface-3)', padding: '0.6rem 0.9rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <div style={{ display: 'flex', gap: '0.35rem' }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(255,255,255,0.07)' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(255,255,255,0.07)' }} />
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(255,255,255,0.07)' }} />
+              </div>
+              <div style={{ flex: 1, height: 22, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 5, display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0 0.6rem' }}>
+                <Icon name="Lock" size={9} fallback="Lock" style={{ color: 'var(--text-secondary)', opacity: 0.3 }} />
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.3 }}>example.com</span>
+              </div>
+            </div>
+            {/* Screenshot area */}
+            <div style={{ width: '100%', aspectRatio: '16 / 7', background: 'rgba(255,255,255,0.02)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.6rem' }}>
+              <Icon name="Monitor" size={28} fallback="Monitor" style={{ color: 'var(--text-secondary)', opacity: 0.15 }} />
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.62rem', color: 'var(--text-secondary)', opacity: 0.2, letterSpacing: '0.12em' }}>СКРИНШОТ</span>
+            </div>
           </div>
+        </div>
 
-          {/* Sections */}
-          <div className="flex flex-col gap-8">
+        {/* Info sections */}
+        <div className="flex flex-col gap-8 mb-12">
 
-            <section>
-              <p className="section-label mb-2">// описание</p>
-              <div className="divider-line mb-4" />
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem' }}>
-                {project.description}
-              </p>
-            </section>
+          <section>
+            <p className="section-label mb-2">// описание</p>
+            <div className="divider-line mb-4" />
+            <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem' }}>
+              {project.description}
+            </p>
+          </section>
 
-            <section>
-              <p className="section-label mb-2">// цель проекта</p>
-              <div className="divider-line mb-4" />
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem' }}>
-                {project.goal}
-              </p>
-            </section>
+          <section>
+            <p className="section-label mb-2">// цель проекта</p>
+            <div className="divider-line mb-4" />
+            <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem' }}>
+              {project.goal}
+            </p>
+          </section>
 
-            <section>
-              <p className="section-label mb-2">// целевая аудитория</p>
-              <div className="divider-line mb-4" />
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem' }}>
-                {project.audience}
-              </p>
-            </section>
+          <section>
+            <p className="section-label mb-2">// целевая аудитория</p>
+            <div className="divider-line mb-4" />
+            <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem' }}>
+              {project.audience}
+            </p>
+          </section>
 
-          </div>
         </div>
 
         {/* Technologies */}
