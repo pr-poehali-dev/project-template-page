@@ -44,6 +44,7 @@ const person = {
       tags: ['React', 'WebSocket', 'Python', 'PostgreSQL'],
       year: '2024',
       status: 'В продакшне',
+      url: 'forex-dashboard.app',
     },
     {
       title: 'Investment Tracker',
@@ -51,6 +52,7 @@ const person = {
       tags: ['React', 'TypeScript', 'REST API', 'Chart.js'],
       year: '2023',
       status: 'В продакшне',
+      url: 'invest-tracker.io',
     },
     {
       title: 'CRM для брокера',
@@ -58,6 +60,7 @@ const person = {
       tags: ['React', 'Python', 'PostgreSQL', 'Docker'],
       year: '2023',
       status: 'Сдан клиенту',
+      url: 'broker-crm.internal',
     },
   ],
 };
@@ -197,27 +200,37 @@ export default function Index() {
           {person.projects.map((project, i) => (
             <div
               key={project.title}
-              style={{ background: 'var(--surface-2)', border: '1px solid var(--surface-3)', borderRadius: 14, overflow: 'hidden', display: 'grid', gridTemplateColumns: '1fr 2fr' }}
-              className="project-card"
+              style={{ background: 'var(--surface-2)', border: '1px solid var(--surface-3)', borderRadius: 14, overflow: 'hidden' }}
             >
-              {/* Screenshot placeholder */}
-              <div style={{ background: 'var(--surface)', borderRight: '1px solid var(--surface-3)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', minHeight: 160, padding: '1rem' }}>
-                <div style={{ width: 40, height: 40, borderRadius: 8, border: '1.5px dashed rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Icon name="Monitor" size={18} fallback="Monitor" style={{ color: 'var(--text-secondary)', opacity: 0.3 }} />
+              {/* Browser mockup screenshot */}
+              <div style={{ background: 'var(--surface)', borderBottom: '1px solid var(--surface-3)', padding: '0.6rem 0.75rem 0' }}>
+                {/* Browser chrome bar */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
+                  <div style={{ display: 'flex', gap: '0.3rem' }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
+                  </div>
+                  <div style={{ flex: 1, height: 18, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 4, display: 'flex', alignItems: 'center', paddingLeft: '0.5rem', gap: '0.3rem' }}>
+                    <Icon name="Lock" size={8} fallback="Lock" style={{ color: 'var(--text-secondary)', opacity: 0.3 }} />
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.55rem', color: 'var(--text-secondary)', opacity: 0.3 }}>{project.url ?? 'localhost'}</span>
+                  </div>
                 </div>
-                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.58rem', color: 'var(--text-secondary)', opacity: 0.3, letterSpacing: '0.12em' }}>СКРИНШОТ</span>
+                {/* Screenshot area */}
+                <div style={{ width: '100%', aspectRatio: '16 / 6', background: 'rgba(255,255,255,0.02)', borderRadius: '6px 6px 0 0', border: '1px solid rgba(255,255,255,0.04)', borderBottom: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                  <Icon name="Monitor" size={22} fallback="Monitor" style={{ color: 'var(--text-secondary)', opacity: 0.2 }} />
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.58rem', color: 'var(--text-secondary)', opacity: 0.2, letterSpacing: '0.12em' }}>СКРИНШОТ</span>
+                </div>
               </div>
 
               {/* Info */}
-              <div style={{ padding: '1.4rem 1.6rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '0.75rem' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                    <span style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-primary)' }}>{project.title}</span>
-                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--neon)', background: 'var(--neon-dim)', border: '1px solid rgba(102,179,255,0.15)', padding: '0.1rem 0.5rem', borderRadius: 4 }}>{project.status}</span>
-                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--text-secondary)', marginLeft: 'auto' }}>{project.year}</span>
-                  </div>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>{project.desc}</p>
+              <div style={{ padding: '1.2rem 1.4rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                  <span style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-primary)' }}>{project.title}</span>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--neon)', background: 'var(--neon-dim)', border: '1px solid rgba(102,179,255,0.15)', padding: '0.1rem 0.5rem', borderRadius: 4 }}>{project.status}</span>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--text-secondary)', marginLeft: 'auto' }}>{project.year}</span>
                 </div>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>{project.desc}</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
                   {project.tags.map((t) => (
                     <span key={t} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--text-secondary)', background: 'var(--surface)', border: '1px solid var(--surface-3)', padding: '0.1rem 0.45rem', borderRadius: 3 }}>{t}</span>
