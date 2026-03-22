@@ -101,10 +101,7 @@ export default function Index() {
               </div>
             </div>
             {/* Screenshot area */}
-            <div style={{ width: '100%', aspectRatio: '16 / 7', background: 'rgba(255,255,255,0.02)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.6rem' }}>
-              <Icon name="Monitor" size={28} fallback="Monitor" style={{ color: 'var(--text-secondary)', opacity: 0.15 }} />
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.62rem', color: 'var(--text-secondary)', opacity: 0.2, letterSpacing: '0.12em' }}>СКРИНШОТ</span>
-            </div>
+            <div style={{ width: '100%', aspectRatio: '16 / 7', background: '#cc0000' }} />
           </div>
         </div>
 
