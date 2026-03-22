@@ -37,6 +37,29 @@ const person = {
   stack: ['React', 'TypeScript', 'Python', 'PostgreSQL', 'Node.js', 'REST API', 'WebSocket', 'Vite', 'Docker', 'Git'],
   tools: ['VS Code', 'Figma', 'MetaTrader 5', 'TradingView', 'Git', 'Linux'],
   nav: ['ГЛАВНАЯ', 'О МНЕ', 'ПРОЕКТЫ', 'ТОРГОВЛЯ', 'ИНВЕСТИЦИИ', 'КОНТАКТЫ'],
+  projects: [
+    {
+      title: 'Forex Dashboard',
+      desc: 'Торговый дашборд с графиками в реальном времени, журналом сделок и аналитикой по парам. Синхронизация с MT5 через WebSocket.',
+      tags: ['React', 'WebSocket', 'Python', 'PostgreSQL'],
+      year: '2024',
+      status: 'В продакшне',
+    },
+    {
+      title: 'Investment Tracker',
+      desc: 'Платформа для отслеживания инвестиционного портфеля: акции, ETF, облигации. Автоматическое обновление котировок и P&L.',
+      tags: ['React', 'TypeScript', 'REST API', 'Chart.js'],
+      year: '2023',
+      status: 'В продакшне',
+    },
+    {
+      title: 'CRM для брокера',
+      desc: 'Внутренняя CRM-система для небольшого форекс-брокера: управление клиентами, KYC, отчётность.',
+      tags: ['React', 'Python', 'PostgreSQL', 'Docker'],
+      year: '2023',
+      status: 'Сдан клиенту',
+    },
+  ],
 };
 
 export default function Index() {
@@ -166,6 +189,43 @@ export default function Index() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Projects */}
+        <p className="section-label mb-8" style={{ color: 'var(--neon)' }}>— 02 / ПРОЕКТЫ</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '4rem' }}>
+          {person.projects.map((project, i) => (
+            <div
+              key={project.title}
+              style={{ background: 'var(--surface-2)', border: '1px solid var(--surface-3)', borderRadius: 14, overflow: 'hidden', display: 'grid', gridTemplateColumns: '1fr 2fr' }}
+              className="project-card"
+            >
+              {/* Screenshot placeholder */}
+              <div style={{ background: 'var(--surface)', borderRight: '1px solid var(--surface-3)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', minHeight: 160, padding: '1rem' }}>
+                <div style={{ width: 40, height: 40, borderRadius: 8, border: '1.5px dashed rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon name="Monitor" size={18} fallback="Monitor" style={{ color: 'var(--text-secondary)', opacity: 0.3 }} />
+                </div>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.58rem', color: 'var(--text-secondary)', opacity: 0.3, letterSpacing: '0.12em' }}>СКРИНШОТ</span>
+              </div>
+
+              {/* Info */}
+              <div style={{ padding: '1.4rem 1.6rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '0.75rem' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                    <span style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-primary)' }}>{project.title}</span>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--neon)', background: 'var(--neon-dim)', border: '1px solid rgba(102,179,255,0.15)', padding: '0.1rem 0.5rem', borderRadius: 4 }}>{project.status}</span>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--text-secondary)', marginLeft: 'auto' }}>{project.year}</span>
+                  </div>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>{project.desc}</p>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
+                  {project.tags.map((t) => (
+                    <span key={t} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', color: 'var(--text-secondary)', background: 'var(--surface)', border: '1px solid var(--surface-3)', padding: '0.1rem 0.45rem', borderRadius: 3 }}>{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Footer */}

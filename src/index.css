@@ -114,6 +114,16 @@
     background: var(--neon-dim);
   }
 
+  .project-card {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  @media (max-width: 640px) {
+    .project-card {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
   .divider-line {
     height: 1px;
     background: linear-gradient(
