@@ -1,4 +1,5 @@
 import Icon from '@/components/ui/icon';
+import TradingJournal from '@/components/TradingJournal';
 
 const project = {
   logo: null,
@@ -224,6 +225,9 @@ export default function Index() {
           </section>
 
         </div>
+
+        {/* Trading Journal */}
+        <TradingJournal />
 
         {/* Technologies */}
         <section className="mb-12">
