@@ -384,44 +384,110 @@ export default function TradeDetail() {
         )}
 
         {activeTab === 'analysis' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+
             {/* Main description */}
             <section>
-              <p className="section-label mb-3">// описание сделки</p>
+              <p className="section-label mb-3">// общее описание</p>
               <div className="divider-line mb-4" />
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, fontSize: '0.93rem' }}>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '0.93rem' }}>
                 {trade.description}
               </p>
             </section>
 
-            {/* Per-TF analysis */}
+            {/* Per-TF analysis — full cards W → 5m */}
             <section>
-              <p className="section-label mb-3">// анализ по таймфреймам</p>
-              <div className="divider-line mb-4" />
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {trade.analysisPerTf.map(({ tf, text }) => (
-                  <div
-                    key={tf}
-                    style={{
-                      background: 'var(--surface-2)', border: '1px solid var(--surface-3)',
-                      borderRadius: 10, padding: '12px 16px', display: 'grid',
-                      gridTemplateColumns: '48px 1fr', gap: 12, alignItems: 'start',
-                    }}
-                  >
+              <p className="section-label mb-3">// разбор по таймфреймам</p>
+              <div className="divider-line mb-5" />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {trade.analysisPerTf.map((tfa) => {
+                  const biasColor = tfa.bias === 'bullish' ? '#22c55e' : tfa.bias === 'bearish' ? '#ef4444' : '#94a3b8';
+                  const biasLabel = tfa.bias === 'bullish' ? '▲ Бычий' : tfa.bias === 'bearish' ? '▼ Медвежий' : '◆ Нейтральный';
+                  const tfLabels: Record<string, string> = {
+                    W: 'Недельный', D: 'Дневной', '4h': '4 часа', '1h': '1 час', '15m': '15 минут', '5m': '5 минут', '1m': '1 минута',
+                  };
+                  return (
                     <div
+                      key={tfa.tf}
                       style={{
-                        fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', fontWeight: 700,
-                        color: 'var(--neon)', background: 'rgba(102,179,255,0.1)', border: '1px solid rgba(102,179,255,0.2)',
-                        borderRadius: 5, padding: '3px 0', textAlign: 'center',
+                        background: 'var(--surface-2)',
+                        border: '1px solid var(--surface-3)',
+                        borderRadius: 12,
+                        overflow: 'hidden',
                       }}
                     >
-                      {tf}
+                      {/* TF header */}
+                      <div
+                        style={{
+                          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                          padding: '12px 16px',
+                          borderBottom: '1px solid var(--surface-3)',
+                          background: 'rgba(255,255,255,0.02)',
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                          <span
+                            style={{
+                              fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.78rem', fontWeight: 700,
+                              color: 'var(--neon)', background: 'rgba(102,179,255,0.1)',
+                              border: '1px solid rgba(102,179,255,0.25)', borderRadius: 5,
+                              padding: '3px 10px',
+                            }}
+                          >
+                            {tfa.tf}
+                          </span>
+                          <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
+                            {tfLabels[tfa.tf] ?? tfa.tf}
+                          </span>
+                        </div>
+                        <span
+                          style={{
+                            fontSize: '0.7rem', fontWeight: 700, color: biasColor,
+                            background: `${biasColor}18`, border: `1px solid ${biasColor}40`,
+                            borderRadius: 5, padding: '2px 10px',
+                          }}
+                        >
+                          {biasLabel}
+                        </span>
+                      </div>
+
+                      {/* TF body */}
+                      <div style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '10px 12px' }}>
+                            <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', fontFamily: "'IBM Plex Mono', monospace", marginBottom: 4, letterSpacing: '0.06em' }}>
+                              КЛЮЧЕВЫЕ УРОВНИ
+                            </div>
+                            <div style={{ fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: 1.5 }}>
+                              {tfa.keyLevels}
+                            </div>
+                          </div>
+                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '10px 12px' }}>
+                            <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', fontFamily: "'IBM Plex Mono', monospace", marginBottom: 4, letterSpacing: '0.06em' }}>
+                              СТРУКТУРА РЫНКА
+                            </div>
+                            <div style={{ fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: 1.5 }}>
+                              {tfa.marketStructure}
+                            </div>
+                          </div>
+                        </div>
+                        <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '10px 12px' }}>
+                          <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', fontFamily: "'IBM Plex Mono', monospace", marginBottom: 4, letterSpacing: '0.06em' }}>
+                            СЕТАП / ПЛАН
+                          </div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--neon)', lineHeight: 1.5 }}>
+                            {tfa.setup}
+                          </div>
+                        </div>
+                        <div style={{ borderLeft: `2px solid ${biasColor}60`, paddingLeft: 12 }}>
+                          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.7, margin: 0 }}>
+                            {tfa.text}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
-                      {text}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
 
@@ -435,6 +501,7 @@ export default function TradeDetail() {
                 ))}
               </div>
             </section>
+
           </div>
         )}
 
